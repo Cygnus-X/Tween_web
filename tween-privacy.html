@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tween — Privacy Policy</title>
+
+<style>
+  @font-face {
+    font-family: 'SFMono-Fallback';
+    src: local('SF Mono'), local('Menlo');
+  }
+
+  :root {
+    --bg: #FAF9F6;
+    --surface: #FFFFFF;
+    --surface-raised: #F3F1EA;
+    --accent: #4F7A64;
+    --accent-strong: #3D6350;
+    --text: #1B1F23;
+    --text-secondary: #5B6570;
+    --border: #E4E1D8;
+    --shadow: 0 1px 2px rgba(20,20,15,0.04), 0 8px 24px rgba(20,20,15,0.06);
+    --code: #3D6350;
+    --code-bg: #F0EEE5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0A0D12;
+      --surface: #12161C;
+      --surface-raised: #171C24;
+      --accent: #2DD4BF;
+      --accent-strong: #5EEAD4;
+      --text: #EDF2F4;
+      --text-secondary: #8A97A3;
+      --border: #232A33;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.45);
+      --code: #5EEAD4;
+      --code-bg: #0F1620;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0A0D12;
+    --surface: #12161C;
+    --surface-raised: #171C24;
+    --accent: #2DD4BF;
+    --accent-strong: #5EEAD4;
+    --text: #EDF2F4;
+    --text-secondary: #8A97A3;
+    --border: #232A33;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.45);
+    --code: #5EEAD4;
+    --code-bg: #0F1620;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  h1, h2 { text-wrap: balance; margin: 0; }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(14px) saturate(160%);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .brand svg { display: block; }
+  .brand .by {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0;
+    color: var(--text-secondary);
+    margin-left: 2px;
+    text-decoration: none;
+  }
+  .brand .by:hover { color: var(--accent-strong); }
+  nav .back {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  nav .back:hover { color: var(--accent-strong); }
+
+  main {
+    padding: 56px 0 96px;
+  }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 10px;
+  }
+
+  .updated {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  section {
+    margin-top: 40px;
+  }
+
+  h2 {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  p, li {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  p { margin: 0 0 14px; }
+
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+
+  strong { color: var(--text); font-weight: 600; }
+
+  a { color: var(--accent-strong); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    background: var(--code-bg);
+    color: var(--code);
+    padding: 1px 6px;
+    border-radius: 5px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 14px;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  th {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .table-wrap { overflow-x: auto; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0 40px;
+  }
+  footer .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  footer a { color: var(--text-secondary); }
+  footer a:hover { color: var(--accent-strong); }
+  footer .links { display: flex; gap: 18px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="brand" href="tween-landing.html">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M3 15C6 15 6 7 11 7C16 7 16 15 19 15" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="3" cy="15" r="1.6" fill="var(--accent)"/>
+        <circle cx="19" cy="15" r="1.6" fill="var(--accent)"/>
+      </svg>
+      Tween
+      <span class="by">by Cygnus-X</span>
+    </a>
+    <a class="back" href="tween-landing.html">← Back to Tween</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="eyebrow">Legal</div>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: August 30, 2026</p>
+
+  <section>
+    <p>This policy covers <strong>Tween</strong>, the Mac app for designing vector shapes and motion graphics, published by Cygnus-X. It explains what data Tween collects, why, and what it never touches.</p>
+  </section>
+
+  <section>
+    <h2>The short version</h2>
+    <div class="card">
+      <p style="margin-bottom:0;">Tween sends a small, anonymous usage event — which export or feature you used, or whether the app hit an error, hung, or crashed — tagged only with a random install ID. It never sends your documents, file names, shape data, images, or anything that identifies you personally. There is no account, no login, and no third-party analytics SDK.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What we collect</h2>
+    <p>Every event is the same three fields, sent as one anonymous request when you use an export or feature, or when the app detects a known error, hang, or crash:</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Field</th><th>What it is</th></tr>
+        <tr><td><code>platform</code></td><td>A short tag identifying the event — e.g. which export format (PDF, PNG, SVG, video, or a code-export platform) or feature was used, or an error/crash/hang signal.</td></tr>
+        <tr><td><code>installID</code></td><td>A random identifier generated once per install and stored locally. It is not tied to your name, email, Apple ID, or device identifier.</td></tr>
+        <tr><td><code>timestamp</code></td><td>When the event happened.</td></tr>
+      </table>
+    </div>
+    <p>Specifically, this covers:</p>
+    <ul>
+      <li><strong>Export usage</strong> — that you exported a PDF, PNG, SVG, or video, or generated code for a given platform (SwiftUI, Android, Compose, Flutter, etc.), so we can see which formats people actually use.</li>
+      <li><strong>Feature adoption</strong> — the first time you open certain tabs or use certain features (like gradient fills or SVG import), logged once per install.</li>
+      <li><strong>Known errors</strong> — that a specific export or import action failed, so we know something needs fixing.</li>
+      <li><strong>Crash/hang signals</strong> — a proxy flag indicating the previous session didn't end cleanly, or that the app's main thread stopped responding for several seconds. This is a heuristic, not a full crash report — it carries no stack trace, log, or document content.</li>
+    </ul>
+    <p>We do not collect your name, email address, location, IP-linked identity, document contents, file paths, shape or layer names, images you import, or any In-App Purchase payment details — those are handled entirely by Apple and never reach us.</p>
+  </section>
+
+  <section>
+    <h2>How it's used</h2>
+    <p>Solely to understand which features and export formats are actually used, and to catch errors, hangs, or crashes we wouldn't otherwise hear about — there's no way for someone to email us a crash report from inside a sandboxed Mac app. The data lands in a private spreadsheet we use for our own product decisions. It is never sold, and never shared with advertisers or data brokers.</p>
+  </section>
+
+  <section>
+    <h2>Where it goes</h2>
+    <p>Events are sent directly from the app to a private Google Apps Script endpoint we control, which appends each event as a row in a Google Sheet only we have access to. No third-party analytics vendor or SDK is involved.</p>
+  </section>
+
+  <section>
+    <h2>Your choices</h2>
+    <ul>
+      <li>There is nothing to opt into — no account is ever created.</li>
+      <li>Because the install ID isn't linked to your identity, we have no way to look up or delete data tied to a specific person on request — it isn't attributable to you in the first place.</li>
+      <li>Tween works fully offline for drawing and editing; only export/feature events and the rare error/crash signal ever attempt a network request, and a failed or blocked request never affects the app's behavior.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>In-App Purchase</h2>
+    <p>Tween's one-time "Unlock Tween" purchase is processed entirely by Apple through StoreKit. We never see your payment information — no card number, billing address, or Apple ID email. Apple's own privacy policy governs that transaction.</p>
+  </section>
+
+  <section>
+    <h2>Children's privacy</h2>
+    <p>Tween is not directed at children and does not knowingly collect information from children. The anonymous usage data described above carries no age or identity signal of any kind.</p>
+  </section>
+
+  <section>
+    <h2>Changes to this policy</h2>
+    <p>If what we collect changes, we'll update this page and the "Last updated" date above. Material changes will also be reflected in the app's release notes.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Questions about this policy or Tween's data practices: <a href="mailto:privacy@cygnus-x.com">privacy@cygnus-x.com</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tween by <a href="https://www.cygnus-x.com">Cygnus-X</a> — © 2026, all rights reserved.</span>
+    <div class="links">
+      <a href="tween-terms.html">Terms &amp; Conditions</a>
+      <a href="tween-landing.html">Home</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

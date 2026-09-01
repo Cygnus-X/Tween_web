@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tween — Terms &amp; Conditions</title>
+
+<style>
+  @font-face {
+    font-family: 'SFMono-Fallback';
+    src: local('SF Mono'), local('Menlo');
+  }
+
+  :root {
+    --bg: #FAF9F6;
+    --surface: #FFFFFF;
+    --surface-raised: #F3F1EA;
+    --accent: #4F7A64;
+    --accent-strong: #3D6350;
+    --text: #1B1F23;
+    --text-secondary: #5B6570;
+    --border: #E4E1D8;
+    --shadow: 0 1px 2px rgba(20,20,15,0.04), 0 8px 24px rgba(20,20,15,0.06);
+    --code: #3D6350;
+    --code-bg: #F0EEE5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0A0D12;
+      --surface: #12161C;
+      --surface-raised: #171C24;
+      --accent: #2DD4BF;
+      --accent-strong: #5EEAD4;
+      --text: #EDF2F4;
+      --text-secondary: #8A97A3;
+      --border: #232A33;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.45);
+      --code: #5EEAD4;
+      --code-bg: #0F1620;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0A0D12;
+    --surface: #12161C;
+    --surface-raised: #171C24;
+    --accent: #2DD4BF;
+    --accent-strong: #5EEAD4;
+    --text: #EDF2F4;
+    --text-secondary: #8A97A3;
+    --border: #232A33;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.45);
+    --code: #5EEAD4;
+    --code-bg: #0F1620;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  h1, h2 { text-wrap: balance; margin: 0; }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(14px) saturate(160%);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .brand svg { display: block; }
+  .brand .by {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0;
+    color: var(--text-secondary);
+    margin-left: 2px;
+    text-decoration: none;
+  }
+  .brand .by:hover { color: var(--accent-strong); }
+  nav .back {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  nav .back:hover { color: var(--accent-strong); }
+
+  main {
+    padding: 56px 0 96px;
+  }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 10px;
+  }
+
+  .updated {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  section {
+    margin-top: 40px;
+  }
+
+  h2 {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  p, li {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  p { margin: 0 0 14px; }
+
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+
+  strong { color: var(--text); font-weight: 600; }
+
+  a { color: var(--accent-strong); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    background: var(--code-bg);
+    color: var(--code);
+    padding: 1px 6px;
+    border-radius: 5px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0 40px;
+  }
+  footer .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  footer a { color: var(--text-secondary); }
+  footer a:hover { color: var(--accent-strong); }
+  footer .links { display: flex; gap: 18px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="brand" href="tween-landing.html">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M3 15C6 15 6 7 11 7C16 7 16 15 19 15" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="3" cy="15" r="1.6" fill="var(--accent)"/>
+        <circle cx="19" cy="15" r="1.6" fill="var(--accent)"/>
+      </svg>
+      Tween
+      <span class="by">by Cygnus-X</span>
+    </a>
+    <a class="back" href="tween-landing.html">← Back to Tween</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="eyebrow">Legal</div>
+  <h1>Terms &amp; Conditions</h1>
+  <p class="updated">Last updated: August 30, 2026</p>
+
+  <section>
+    <p>These terms govern your use of <strong>Tween</strong>, a macOS app for designing vector shapes and motion graphics, published by Cygnus-X ("we", "us"). By downloading, installing, or using Tween, you agree to these terms. If you don't agree, don't use the app.</p>
+  </section>
+
+  <section>
+    <h2>The app</h2>
+    <p>Tween is distributed as a free download with a 3-day full-feature trial, after which continued saving and exporting requires a one-time, non-consumable In-App Purchase ("Unlock Tween"). There is no subscription — a completed purchase unlocks the app permanently on your account, subject to Apple's own purchase-sharing rules for App Store apps.</p>
+  </section>
+
+  <section>
+    <h2>Trial &amp; purchase</h2>
+    <ul>
+      <li>The trial runs once per install/device and does not require an account or payment method.</li>
+      <li>During the trial, PDF, PNG, SVG, and video exports carry a visible watermark; Code Export (SwiftUI, SVG-as-code, Android, Compose, Flutter) is unavailable until purchase.</li>
+      <li>After the trial ends without a purchase, saving and all exports are blocked until you unlock the app.</li>
+      <li>The unlock is a one-time, non-consumable purchase billed and processed entirely by Apple through the App Store. Pricing, currency, and available payment methods are Apple's, not ours.</li>
+      <li>All billing questions, receipts, and <strong>refund requests</strong> are handled by Apple under the Apple Media Services Terms and Conditions, not by us directly — we have no ability to issue refunds ourselves.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>License</h2>
+    <p>Subject to these terms, we grant you a personal, non-exclusive, non-transferable license to install and use Tween on devices you own or control, for your own design and development work. You may not redistribute, resell, reverse-engineer, or attempt to bypass the trial/purchase gating in the app.</p>
+  </section>
+
+  <section>
+    <h2>Your content</h2>
+    <p>Everything you create in Tween — shapes, paths, animations, imported images, and exported code or media — is yours. Tween works entirely on-device: your documents are never uploaded to us, and we have no access to their contents. See the <a href="tween-privacy.html">Privacy Policy</a> for the limited, anonymous usage data the app does send.</p>
+  </section>
+
+  <section>
+    <h2>Exported code &amp; assets</h2>
+    <p>Code, images, and video generated by Tween's export features are yours to use, modify, and ship in your own projects, commercial or otherwise, without attribution required. We make no claim over anything you export.</p>
+  </section>
+
+  <section>
+    <h2>No warranty</h2>
+    <div class="card">
+      <p style="margin-bottom:0;">Tween is provided "as is" and "as available," without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non-infringement. We don't guarantee the app will be error-free, uninterrupted, or that exported output will be fit for every use case or platform version you target.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, Cygnus-X is not liable for any indirect, incidental, special, or consequential damages arising from your use of, or inability to use, Tween — including lost data, lost profits, or business interruption — even if advised of the possibility. Our total liability for any claim relating to Tween is limited to the amount you paid for the In-App Purchase, if any.</p>
+  </section>
+
+  <section>
+    <h2>Changes to the app or these terms</h2>
+    <p>We may update Tween's features over time, and may revise these terms as the app evolves. Material changes will be reflected in the app's release notes and the "Last updated" date above. Continued use after a change means you accept the revised terms.</p>
+  </section>
+
+  <section>
+    <h2>Termination</h2>
+    <p>We may discontinue or modify Tween at any time. If you violate these terms — for example, by attempting to circumvent purchase gating — your license to use the app terminates automatically, without affecting any purchase you've already made through Apple.</p>
+  </section>
+
+  <section>
+    <h2>Governing law</h2>
+    <p>These terms are governed by the laws applicable in Cygnus-X's place of business, without regard to conflict-of-law principles, except where local consumer-protection law provides otherwise.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Questions about these terms: <a href="mailto:hello@cygnus-x.com">hello@cygnus-x.com</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tween by <a href="https://www.cygnus-x.com">Cygnus-X</a> — © 2026, all rights reserved.</span>
+    <div class="links">
+      <a href="tween-privacy.html">Privacy Policy</a>
+      <a href="tween-landing.html">Home</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
