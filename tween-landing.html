@@ -339,6 +339,21 @@
 
   /* ---------- Pricing ---------- */
   section.pricing { padding: 40px 0 100px; }
+
+  section.support { padding: 0 0 80px; }
+  section.support .support-card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    text-align: center;
+  }
+  section.support h2 { margin-top: 8px; font-size: 22px; }
+  section.support p {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    margin: 8px 0 0;
+  }
+  section.support a { color: var(--accent-strong); font-weight: 600; }
   .price-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -626,8 +641,18 @@
         <div class="amount"><span class="was">$39</span><sup>$</sup>29</div>
         <span class="note">One-time, after a free 3-day trial</span>
         <span class="note offer">Price rises to $39 once the launch offer ends</span>
-        <a class="buy-button" href="#">Start Free Trial</a>
+        <a class="buy-button" href="https://apps.apple.com/app/id6809775238" target="_blank" rel="noopener">Start Free Trial</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="support" id="support">
+  <div class="wrap">
+    <div class="support-card">
+      <div class="eyebrow">Support</div>
+      <h2>Need help with Tween?</h2>
+      <p>Email <a href="mailto:hello@cygnus-x.com">hello@cygnus-x.com</a> — questions, bugs, and feature requests all welcome. We usually reply within a day or two.</p>
     </div>
   </div>
 </section>
@@ -636,6 +661,7 @@
   <div class="wrap">
     <span>Tween by <a href="https://www.cygnus-x.com">Cygnus-X</a> — © 2026, all rights reserved.</span>
     <div style="display:flex; gap:18px;">
+      <a href="#support">Support</a>
       <a href="tween-privacy.html">Privacy</a>
       <a href="tween-terms.html">Terms</a>
     </div>
