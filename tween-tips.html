@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tween — Tips &amp; Tricks</title>
+
+<style>
+  @font-face {
+    font-family: 'SFMono-Fallback';
+    src: local('SF Mono'), local('Menlo');
+  }
+
+  :root {
+    --bg: #FAF9F6;
+    --surface: #FFFFFF;
+    --surface-raised: #F3F1EA;
+    --accent: #4F7A64;
+    --accent-strong: #3D6350;
+    --text: #1B1F23;
+    --text-secondary: #5B6570;
+    --border: #E4E1D8;
+    --shadow: 0 1px 2px rgba(20,20,15,0.04), 0 8px 24px rgba(20,20,15,0.06);
+    --code: #3D6350;
+    --code-bg: #F0EEE5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0A0D12;
+      --surface: #12161C;
+      --surface-raised: #171C24;
+      --accent: #2DD4BF;
+      --accent-strong: #5EEAD4;
+      --text: #EDF2F4;
+      --text-secondary: #8A97A3;
+      --border: #232A33;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.45);
+      --code: #5EEAD4;
+      --code-bg: #0F1620;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0A0D12;
+    --surface: #12161C;
+    --surface-raised: #171C24;
+    --accent: #2DD4BF;
+    --accent-strong: #5EEAD4;
+    --text: #EDF2F4;
+    --text-secondary: #8A97A3;
+    --border: #232A33;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.45);
+    --code: #5EEAD4;
+    --code-bg: #0F1620;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  h1, h2 { text-wrap: balance; margin: 0; }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(14px) saturate(160%);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .brand svg { display: block; }
+  .brand .by {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0;
+    color: var(--text-secondary);
+    margin-left: 2px;
+    text-decoration: none;
+  }
+  .brand .by:hover { color: var(--accent-strong); }
+  nav .back {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  nav .back:hover { color: var(--accent-strong); }
+
+  main { padding: 56px 0 96px; }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 10px;
+  }
+
+  main > .wrap > p.lede {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  section { margin-top: 48px; }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 750;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+
+  p, li {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+  p { margin: 0 0 10px; }
+  strong { color: var(--text); font-weight: 600; }
+  a { color: var(--accent-strong); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    background: var(--code-bg);
+    color: var(--code);
+    padding: 1px 6px;
+    border-radius: 5px;
+  }
+
+  /* ---------- Steps ---------- */
+  .step {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .step:nth-child(even) .step-shot { order: 2; }
+  .step-num {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    color: var(--accent-strong);
+    font-weight: 700;
+  }
+  .step h3 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    margin: 6px 0 8px;
+  }
+  .step p { margin: 0; }
+  .step-shot {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    background: var(--surface);
+  }
+  .step-shot img { display: block; width: 100%; height: auto; }
+
+  /* ---------- Tips list ---------- */
+  .tip-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 28px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .tip-grid li {
+    padding-left: 18px;
+    position: relative;
+  }
+  .tip-grid li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-strong);
+  }
+  .tip-grid strong { color: var(--text); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0 40px;
+  }
+  footer .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  footer a { color: var(--text-secondary); }
+  footer a:hover { color: var(--accent-strong); }
+  footer .links { display: flex; gap: 18px; }
+
+  @media (max-width: 720px) {
+    .step, .step:nth-child(even) .step-shot { grid-template-columns: 1fr; order: initial; }
+    .tip-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a class="brand" href="index.html">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M3 15C6 15 6 7 11 7C16 7 16 15 19 15" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="3" cy="15" r="1.6" fill="var(--accent)"/>
+        <circle cx="19" cy="15" r="1.6" fill="var(--accent)"/>
+      </svg>
+      Tween
+      <span class="by">by Cygnus-X</span>
+    </a>
+    <a class="back" href="index.html">← Back to Tween</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="eyebrow">Guide</div>
+  <h1>Tips &amp; Tricks</h1>
+  <p class="lede">A quick tour of the workflow, plus the shortcuts and small details that aren't obvious the first time you open Tween.</p>
+
+  <section>
+    <div class="step">
+      <div>
+        <div class="step-num">01</div>
+        <h3>Draw &amp; style</h3>
+        <p>Pick a tool from the left rail — pen, shapes, or Free Draw for a freehand sketch that gets auto-smoothed. Select anything to style it in the Inspector: solid or gradient fills, stroke width, dash, and per-color opacity.</p>
+      </div>
+      <div class="step-shot"><img src="img/tips/03-style-gradient-dash.png" alt="Inspector panel showing gradient fill and dash controls"></div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="step-num">02</div>
+        <h3>Import or trace something in</h3>
+        <p>Drag an SVG, image, or SF Symbol straight onto the canvas, paste SVG markup, or paste a SwiftUI Path/Shape snippet. Raster images can be traced into real editable vector points.</p>
+      </div>
+      <div class="step-shot"><img src="img/tips/tab-import.png" alt="Import tab for pasting SVG markup or importing a file"></div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="step-num">03</div>
+        <h3>Organize with Layers</h3>
+        <p>Every shape, text label, and image gets its own row — hide, lock, rename, reorder, or multi-select without leaving the canvas. Shapes, text, and images each stack within their own group.</p>
+      </div>
+      <div class="step-shot"><img src="img/tips/tab-layers.png" alt="Layers panel listing shapes with hide, lock, and reorder controls"></div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="step-num">04</div>
+        <h3>Ask the AI assistant</h3>
+        <p>Bring your own Anthropic or OpenAI API key (saved to the macOS Keychain), describe what you want — "add a red star that spins in over 2 seconds" — and it builds it directly on the canvas.</p>
+      </div>
+      <div class="step-shot"><img src="img/tips/tab-ai.png" alt="AI Assistant panel with API key field and chat prompt"></div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="step-num">05</div>
+        <h3>Export</h3>
+        <p>PDF, PNG, SVG, or a transparent ProRes video — or open Code Export for a SwiftUI Shape/Path, SVG/HTML/Canvas/React, Android, Compose, or Flutter snippet.</p>
+      </div>
+      <div class="step-shot"><img src="img/tips/tab-export.png" alt="Export tab with PDF, PNG, SVG, video, and code export buttons"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Shortcuts &amp; tricks worth knowing</h2>
+    <ul class="tip-grid">
+      <li><strong>Hold Space</strong> over the canvas to temporarily pan/view, even mid-draw — let go to snap back to your tool.</li>
+      <li><strong>Hold Shift</strong> over the canvas to temporarily switch to Select mode without changing tools.</li>
+      <li><strong>Arrow keys</strong> nudge a selection 1pt; <strong>Shift+Arrow</strong> nudges it 10pt.</li>
+      <li><strong>Arrow keys in a number field</strong> step the value by 1 (or 0.1 on a percentage field).</li>
+      <li><strong>Shift</strong> while dragging a resize handle keeps proportions locked.</li>
+      <li><strong>Cmd+A / Delete / Esc</strong> select all, delete, or clear the current selection.</li>
+      <li><strong>Cmd+C / Cmd+V</strong> copy and paste points, text, or images — paste lands under your mouse.</li>
+      <li>In the Layers tab, <strong>↑/↓</strong> moves your selection between layers; <strong>Shift+↑/↓</strong> selects a range.</li>
+      <li>Shapes snap into alignment automatically — to another layer's center, the canvas center, or a nearby anchor.</li>
+      <li><strong>Right-click</strong> a point, label, image, or layer row for a context menu (smooth/corner, delete, rename…).</li>
+      <li>Pinch or scroll to zoom (20%–500%); the toolbar's <strong>100%</strong> button resets it instantly.</li>
+      <li>On the Animate tab, drag a shape's rotation-pivot handle to change what it spins around — right-click it to reset to center.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tween by <a href="https://www.cygnus-x.com">Cygnus-X</a> — © 2026, all rights reserved.</span>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="tween-privacy.html">Privacy</a>
+      <a href="tween-terms.html">Terms</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

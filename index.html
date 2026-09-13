@@ -337,6 +337,47 @@
     color: var(--text-secondary);
   }
 
+  /* ---------- How to use ---------- */
+  section.howto { padding: 8px 0 64px; }
+  .howto-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .howto-card h2 {
+    font-size: 24px;
+    font-weight: 750;
+    letter-spacing: -0.015em;
+    margin-top: 8px;
+  }
+  .howto-card p {
+    margin: 10px 0 0;
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 52ch;
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 14.5px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--accent-strong);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    white-space: nowrap;
+  }
+
   /* ---------- Pricing ---------- */
   section.pricing { padding: 40px 0 100px; }
 
@@ -622,6 +663,19 @@
         <h4>Free Draw</h4>
         <p>Sketch freehand with the mouse and it's automatically simplified and smoothed into a clean, editable curve — no pen-tool precision required.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="howto">
+  <div class="wrap">
+    <div class="howto-card">
+      <div>
+        <div class="eyebrow">Getting started</div>
+        <h2>New to Tween?</h2>
+        <p>Draw with the pen tool, import an SVG or image, animate it on the Animate tab, then export straight to code. A short step-by-step walkthrough plus the shortcuts and tricks that aren't obvious at first glance are one click away.</p>
+      </div>
+      <a class="btn-secondary" href="tween-tips.html">Tips &amp; Tricks →</a>
     </div>
   </div>
 </section>
